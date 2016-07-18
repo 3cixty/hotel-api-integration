@@ -1,6 +1,5 @@
 // This script retrieves the list of available hotels in a certain city, defined by the value of variable "city_ids".
 // The data is stored in a mongoDB DB, and also locally, in a set of text files, just for logging purposes.
-
 // To Run the script (dependencies):
 // - you need a MongoDB installation on the machine on which you run the script. The MongoDB should be on the standard port (27017).
 // - you need to be able to run nodejs (https://nodejs.org/en/) scripts on your machine
@@ -310,6 +309,4 @@ function callPaginating( pathBase, requestParam){
 
 }
 
-
-console.log("Started ");
 callPaginating(pathBase, null);
