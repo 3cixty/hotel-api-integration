@@ -25,24 +25,24 @@ Date.prototype.formatYYYYMMDDmmss = function(){
 }
 
 Date.prototype.formatYYYYMMDDHHMMSS = function(){
-   var hour = this.getHours();
-    hour = (hour < 10 ? "0" : "") + hour;
+	var hour = this.getHours();
+	hour = (hour < 10 ? "0" : "") + hour;
 
-    var min  = this.getMinutes();
-    min = (min < 10 ? "0" : "") + min;
+	var min  = this.getMinutes();
+	min = (min < 10 ? "0" : "") + min;
 
-    var sec  = this.getSeconds();
-    sec = (sec < 10 ? "0" : "") + sec;
+	var sec  = this.getSeconds();
+	sec = (sec < 10 ? "0" : "") + sec;
 
-    var year = this.getFullYear();
+	var year = this.getFullYear();
 
-    var month = this.getMonth() + 1;
-    month = (month < 10 ? "0" : "") + month;
+	var month = this.getMonth() + 1;
+	month = (month < 10 ? "0" : "") + month;
 
-    var day  = this.getDate();
-    day = (day < 10 ? "0" : "") + day;
+	var day  = this.getDate();
+	day = (day < 10 ? "0" : "") + day;
 
-    return year + "-" + month + "-" + day + "T" + hour + ":" + min + ":" + sec;
+	return year + "-" + month + "-" + day + "T" + hour + ":" + min + ":" + sec;
 
 }
 
@@ -190,17 +190,17 @@ MongoClient.connect(mongodburl, function(err, db) {
 		BOOKINGdb = db;
 		collection = BOOKINGdb.collection(collectionName);
 		collections = BOOKINGdb.listCollections({name:{'$regex' : 'availableHotelsRetrievedMilan', '$options' : 'i'}}).toArray(function(err, collections) {
-                        console.log("These are the collections available "+ collections.length );
-                        for(var i = 0, len = collections.length; i < len ; i++){
-                        var oldCollection = collections[i];
-                        //console.log(oldCollection.name);
-                        //console.log(typeof oldCollection.name);
-                        BOOKINGdb.collection(oldCollection.name.toString()).drop(function(err, response) {
-                        //console.log(response);
-                        });     
-                        }
+				console.log("These are the collections available "+ collections.length );
+				for(var i = 0, len = collections.length; i < len ; i++){
+				var oldCollection = collections[i];
+				//console.log(oldCollection.name);
+				//console.log(typeof oldCollection.name);
+				BOOKINGdb.collection(oldCollection.name.toString()).drop(function(err, response) {
+						//console.log(response);
+						});     
+				}
 
-                });
+				});
 
 		});
 
@@ -267,26 +267,25 @@ innerCallback = function(error, response, body) {
 					console.log(result);
 					BOOKINGdb.close();
 					});
- 			console.log("collection inserted in the db");
+			console.log("collection inserted in the db");
 		}
-
+		/*
 		// Writing the file with the list of hotels, just for logging
 		fileName= __dirname+"/" + 'Milan'+ "_Hotel_"+ languagecodes +"_"+new Date().formatYYYYMMDDmmss()+".json"
 
-			fs.writeFile(fileName, JSON.stringify(hotelList), function(err) {
-					if(err) {
-					return console.log(err);
-					}
+		fs.writeFile(fileName, JSON.stringify(hotelList), function(err) {
+		if(err) {
+		return console.log(err);
+		}
 
-					console.log("The file was saved!");
-					var fileString = fs.readFileSync(fileName, 'utf8');
-					//console.log(fileString);
-					var obj = JSON.parse(fileString);
-					console.log();
-					console.log("Saved "+obj.length+" Hotels");
-					console.log();
-					});
-	}
+		console.log("The file was saved!");
+		var fileString = fs.readFileSync(fileName, 'utf8');
+		//console.log(fileString);
+		var obj = JSON.parse(fileString);
+		console.log();
+		});
+		 */
+}
 }
 
 function callPaginating( pathBase, requestParam){

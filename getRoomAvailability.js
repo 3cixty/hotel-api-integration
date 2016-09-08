@@ -245,11 +245,11 @@ innerCallback = function(error, response, body) {
 				console.log(hotelList.length);
 			}
 			count = count + resultOBJ.length;
-                        offset = offset + count + 1;
-                        console.log(offset);
-                        console.log("count = "+count);
-                        console.log("Read "+ resultOBJ.length + " hotels");
-                        console.log();
+			offset = offset + count + 1;
+			console.log(offset);
+			console.log("count = "+count);
+			console.log("Read "+ resultOBJ.length + " hotels");
+			console.log();
 
 			//new call to retrieve further results
 			var newArgs = "&arrival_date=" + currArrivalDate + "&departure_date=" + currDepartureDate+ "&offset" + offset;
@@ -259,7 +259,6 @@ innerCallback = function(error, response, body) {
 		else{
 
 			// Last call for this session
-			//console.log(body);
 			console.log("=====LAST CALL====");
 			if (!isEmpty(resultOBJ)){
 				for (var i=0; i < resultOBJ.length; i++){
@@ -290,7 +289,7 @@ innerCallback = function(error, response, body) {
 
 			}
 
-			// Writing the file with the list of hotels, just for logging
+			/*Uncomment this line to write the file in the filessytem with the list of hotels, just for logging
 			fileName= __dirname+"/" + city  + dateRange + "Hotel_Rooms_"+ languageCode +"_"+(days[curDay].formatYYYYMMDD())+".json"
 
 				fs.writeFile(fileName, JSON.stringify(hotelList), function(err) {
@@ -306,6 +305,7 @@ innerCallback = function(error, response, body) {
 						console.log("Saved "+obj.length+" Hotels");
 						console.log();
 						});
+			*/
 			curDay = curDay + 1;
 
 			//this is the recursive call that we use to retrieve the data for the next day
@@ -326,11 +326,10 @@ function callPaginating(arrivalDate, departureDate, pathBase, requestParam){
 	log.info("Calling callPaginating requestParam ="+requestParam);
 	//reset count and hotel list
 	count = 0;
-	//console.log("count = "+count);
 	hotelList = [];
 
 	if (!requestParam){
-		requestParam = "&city_ids=" + cityId + "&arrival_date=" + currArrivalDate + "&departure_date=" + currDepartureDate + "&available_rooms=" + availableRooms + "&guest_qty=" + nOfPeople + '&rows=' + rows;
+		requestParam = "&city_ids=" + cityId + "&arrival_date=" + currArrivalDate + "&departure_date=" + currDepartureDate + "&available_rooms=" + availableRooms + "&guest_qty=" + nOfPeople 			+ '&rows=' + rows;
 
 	}
 	console.log("Requesting "+ pathBase+requestParam);
